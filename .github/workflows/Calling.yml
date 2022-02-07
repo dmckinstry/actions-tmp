@@ -1,0 +1,17 @@
+name: Calling Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: echo Do build stuff
+
+  call_reuse:
+    needs: [ build ]
+    uses: dmckinstry/action-ch/.github/workflows/reuse.yml@main
+    with:
+      name: passed-in
+      
